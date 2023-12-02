@@ -1,0 +1,11 @@
+#root{
+  min-height: 100vh;
+  padding: 1.5rem 2rem;
+}
+
+.containerLogin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 92vh;
+}
