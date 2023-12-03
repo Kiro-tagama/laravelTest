@@ -23,26 +23,27 @@ use App\Http\Controllers\ReserveController;
 //     return $request->user();
 // });
 
-try {
-    DB::connection()->getPdo();
-    echo "Conexão com o banco de dados estabelecida com sucesso!";
-} catch (\Exception $e) {
-    die("Erro de conexão com o banco de dados: " . $e->getMessage());
-}
 
 // - get - lista de livros
 // - post - book
 
 // - get - livro por status
 // - get - livro por nome
-Route::get('/',function () {
-    header('Access-Control-Allow-Origin: http://127.0.0.1:5173');
-    return response()->json(['message' => 'Hello from the API!']);
+
+Route::any('/',function () {
+    echo "Server ON - ";
+    try {
+        DB::connection()->getPdo();
+        echo "Conexão com o banco de dados estabelecida com sucesso!";
+    } catch (\Exception $e) {
+        die("Erro de conexão com o banco de dados: " . $e->getMessage());
+    }
+    return response("",200);
 });
 
-Route::get('/books', [BookController::class, 'getAll']);
-Route::get('/books/{name}', [BookController::class, 'showName']);
-Route::post('/books', [BookController::class, 'store']);
+Route::get('/books', [BookController::class, 'getAll']);                //ok
+Route::post('/books', [BookController::class, 'store']);                //ok
+Route::get('/books/{name}', [BookController::class, 'searchBooks']);    //ok
 Route::delete('/books/{id}', [BookController::class, 'remove']);
 
 //Route::get('/books/{reserved}', [BookController::class, 'showReserved']);

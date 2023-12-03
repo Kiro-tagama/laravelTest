@@ -12,7 +12,7 @@ export function Login() {
   const [type, setType] = useState<boolean>(true)
 
   useEffect(()=>{
-    const data = axios.get("http://127.0.0.1:8000/api").then(res=>console.log(res.data))
+    const data = axios.get("http://127.0.0.1:8000/api/books").then(res=>console.log(res.data))
   },[])
 
   return(

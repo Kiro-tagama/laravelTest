@@ -9,3 +9,23 @@
   align-items: center;
   height: 92vh;
 }
+
+.listBooks{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.listBooks article{
+  margin: 0;
+}
+
+@media (max-width:1020px ) {
+  .listBooks{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width:560px ) {
+  .listBooks{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

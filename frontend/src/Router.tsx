@@ -3,19 +3,15 @@ import { Login } from "./pages/Login";
 import { useContext } from "react";
 import { ContextArea } from "./context/Context";
 import { Home } from "./pages/Home";
+import { ListBooks } from "./pages/ListBooks";
 
 export function Router() {
-  const {user} = useContext(ContextArea)
+  //const {user} = useContext(ContextArea)
 
   return (
     <Routes>
-      {user == null ? 
-        <Route path="/" element={<Login/>}/>:
-
-        <>
-          <Route path="/" element={<Home/>}/>
-        </>
-      }
+      <Route path="/" element={<Login/>}/>
+      <Route path="liby" element={<ListBooks/>}/>
     </Routes>
   )
 }
