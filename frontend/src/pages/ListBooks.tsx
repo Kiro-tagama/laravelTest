@@ -1,5 +1,7 @@
+import { CaretLeft } from "@phosphor-icons/react"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 interface books{
   map:any
@@ -18,10 +20,15 @@ export function ListBooks(){
 
   return(
     <div>
-      <div style={{position:"sticky",top:0,backdropFilter:`blur(20rem)`,paddingInline:10,zIndex:50}}> 
-        <h2 style={{margin:10}}>Biblioteca</h2>
+      <div style={{position:"sticky",top:0,backdropFilter:`blur(20rem)`,padding:10,zIndex:50}}> 
+        <h2 style={{marginBottom:0,display:"flex",alignItems:"center"}}>
+          <Link to={'/'} role="button" className="outline"><CaretLeft size={32} /></Link>
+          <span style={{marginInline:"auto"}}>Biblioteca</span>
+        </h2>
+        <br />
         <input type="text" name="" id="" 
         placeholder="Pesquisa ..."
+        style={{margin:0}}
         value={query}
         onChange={txt=>setQuery(txt.target.value)}
         />
