@@ -48,10 +48,42 @@ class BookController extends Controller{
         }
     }
 
-    public function searchBooks(Request $request, $query)
-    {
+    public function searchBooks($query){
         $books = Book::where('title', 'like', '%' . $query . '%')->get();
-
         return response()->json(['books' => $books]);
+    }
+
+    public function update(Request $request, $id){
+        $book = Book::find($id);
+
+        if (!$book) {
+            return response(['error' => 'Livro não encontrado'], 404);
+        }
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'description' => 'required|string',
+            // Adicione outras validações conforme necessário
+        ]);
+
+        $book->update([
+            'title' => $request->input('title'),
+            'author' => $request->input('author'),
+            'description' => $request->input('description'),
+            // Atualize com outros campos conforme necessário
+        ]);
+
+        return response(['message' => 'Livro atualizado com sucesso'], 200);
+    }
+
+    public function remove($id)
+    {
+        $book = Book::find($id);
+
+        if (!$book) return response(['error' => 'Livro não encontrado'], 404);
+
+        $book->delete();
+        return response(['message' => 'Livro removido com sucesso'], 200);
     }
 }

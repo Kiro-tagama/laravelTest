@@ -42,15 +42,19 @@ Route::any('/',function () {
 });
 
 Route::get('/books', [BookController::class, 'getAll']);                //ok
-Route::post('/books', [BookController::class, 'store']);                //ok
 Route::get('/books/{name}', [BookController::class, 'searchBooks']);    //ok
-Route::delete('/books/{id}', [BookController::class, 'remove']);
+Route::post('/books', [BookController::class, 'store']);                //ok
+Route::put('/books/{id}', [BookController::class, 'update']);           //ok    
+Route::delete('/books/{id}', [BookController::class, 'remove']);        //ok
 
 //Route::get('/books/{reserved}', [BookController::class, 'showReserved']);
 
 // - get - login - OAuth2
-Route::get('/auth', [AuthController::class, 'login']);
-Route::post('/auth', [AuthController::class, 'create']);
+Route::get('/alluser', [AuthController::class, 'getAll']);
+Route::get('/user', [AuthController::class, 'loginWithEmail']);
+Route::post('/user', [AuthController::class, 'createWithEmail']);
+Route::get('/user/OA2', [AuthController::class, 'loginWithAuth2']);
+Route::post('/user/OA2', [AuthController::class, 'createWithAuth2']);
 
 // - post - reserva - notification to admin
 // - put - reserva
