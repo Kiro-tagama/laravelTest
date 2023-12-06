@@ -51,7 +51,7 @@ class AuthController extends Controller
             'password' => ['required', 'min:6'],
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),

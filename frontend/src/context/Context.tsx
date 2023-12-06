@@ -1,18 +1,38 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { baseURL } from "../api/api";
 
-export const ContextArea=createContext({})
+interface propsUser{
+  user: null | {id:string,name:string,email:string}
+  admin: boolean
+  LoginWithEmail?: any
+  CreateWithEmail?:any
+  LogOut?:any
+}
+
+export const ContextArea=createContext<propsUser>({
+  user: null,
+  admin:false
+})
 
 //@ts-ignore
 export function ContextProvider({children}){
   const [user,setUser]= useState<any|null>(null)
+  const [admin,setAdmin]= useState<boolean>(false)
+
+  useEffect(()=>{
+    const data = localStorage.getItem("userData")
+    data?setUser(JSON.parse(data)):null
+  },[])
 
   function LoginWithEmail(email:string,pass:string){
     axios.get(baseURL+`user?email=${email}&password=${pass}`)
     .then(res=>{
-      console.log("login ok");
-      setUser(res.data)
+      const data=res.data.user
+      console.log(data);
+      
+      localStorage.setItem("userData", JSON.stringify(data));
+      setUser(data)
     })
     .catch(_=>{alert("E-mail ou senha incorretos")})
   }
@@ -27,10 +47,15 @@ export function ContextProvider({children}){
     .catch(err=>{console.log(err)})
   }
 
+  function LogOut() {
+    localStorage.removeItem("userData");
+    setUser(null)
+  }
+
   return(
     <ContextArea.Provider
       value={{
-        user, LoginWithEmail,CreateWithEmail
+        user,admin, LoginWithEmail,CreateWithEmail,LogOut
       }}
     >
       {children}

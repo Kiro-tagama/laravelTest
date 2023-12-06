@@ -234,6 +234,7 @@ CREATE TABLE public.reservations (
     id uuid NOT NULL,
     user_id uuid NOT NULL,
     book_id uuid NOT NULL,
+    book_name text NOT NULL,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone
 );
@@ -483,17 +484,17 @@ SET row_security = off;
 --
 
 COPY public.migrations (id, migration, batch) FROM stdin;
-12	2016_06_01_000001_create_oauth_auth_codes_table	1
-13	2016_06_01_000002_create_oauth_access_tokens_table	1
-14	2016_06_01_000003_create_oauth_refresh_tokens_table	1
-15	2016_06_01_000004_create_oauth_clients_table	1
-16	2016_06_01_000005_create_oauth_personal_access_clients_table	1
-17	2019_12_14_000001_create_personal_access_tokens_table	1
-18	2023_11_30_105435_create_users_table	1
-19	2023_11_30_105447_create_roles_table	1
-20	2023_11_30_105457_create_permissions_table	1
-21	2023_11_30_105503_create_books_table	1
-22	2023_11_30_105511_create_reservations_table	1
+1	2016_06_01_000001_create_oauth_auth_codes_table	1
+2	2016_06_01_000002_create_oauth_access_tokens_table	1
+3	2016_06_01_000003_create_oauth_refresh_tokens_table	1
+4	2016_06_01_000004_create_oauth_clients_table	1
+5	2016_06_01_000005_create_oauth_personal_access_clients_table	1
+6	2019_12_14_000001_create_personal_access_tokens_table	1
+7	2023_11_30_105435_create_users_table	1
+8	2023_11_30_105447_create_roles_table	1
+9	2023_11_30_105457_create_permissions_table	1
+10	2023_11_30_105503_create_books_table	1
+11	2023_11_30_105511_create_reservations_table	1
 \.
 
 
@@ -501,7 +502,7 @@ COPY public.migrations (id, migration, batch) FROM stdin;
 -- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.migrations_id_seq', 22, true);
+SELECT pg_catalog.setval('public.migrations_id_seq', 11, true);
 
 
 --

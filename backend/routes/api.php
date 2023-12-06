@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\DB;
@@ -50,16 +49,15 @@ Route::delete('/books/{id}', [BookController::class, 'remove']);        //ok
 //Route::get('/books/{reserved}', [BookController::class, 'showReserved']);
 
 // - get - login - OAuth2
-Route::get('/alluser', [AuthController::class, 'getAll']);
-Route::get('/user', [AuthController::class, 'loginWithEmail']);
-Route::post('/user', [AuthController::class, 'createWithEmail']);
+Route::get('/alluser', [AuthController::class, 'getAll']);              //ok
+Route::get('/user', [AuthController::class, 'loginWithEmail']);         //ok
+Route::post('/user', [AuthController::class, 'createWithEmail']);       //ok
 Route::get('/user/OA2', [AuthController::class, 'loginWithAuth2']);
 Route::post('/user/OA2', [AuthController::class, 'createWithAuth2']);
 
 // - post - reserva - notification to admin
 // - put - reserva
 // - del - reserva
-Route::get('/reserve', [ReserveController::class, 'getAll']);
+Route::get('/reserve', [ReserveController::class, 'getAll']);           //ok
 Route::post('/reserve', [ReserveController::class, 'store']);
-Route::put('/reserve', [ReserveController::class, 'edit']);
-Route::delete('/reserve', [ReserveController::class, 'remove']);
+Route::delete('/reserve/{id}', [ReserveController::class, 'remove']);

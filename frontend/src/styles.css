@@ -23,6 +23,16 @@
   align-items: center;
   justify-content: center;
 }
+.SignOut{
+  width:min-content;
+  color: red;
+  border-color: red;
+}
+.SignOut:hover{
+  width:min-content;
+  color: rgb(255, 115, 115);
+  border-color: rgb(255, 115, 115);
+}
 
 .listBooks{
   display: grid;
