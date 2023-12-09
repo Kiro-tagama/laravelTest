@@ -4,6 +4,7 @@ import { baseURL } from "../api/api"
 import { ContextArea } from "../context/Context"
 
 export interface propsBooks{
+  length?:number
   map?:any
   id:string
   title:string

@@ -1,6 +1,6 @@
 #root{
   min-height: 100vh;
-  padding: 1.5rem 2rem;
+  padding-block: 1.5rem;
 }
 
 .containerLogin{
@@ -14,6 +14,7 @@
   display:flex;
   gap: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .listLinksHome a{
   width: 6.5rem;

@@ -24,7 +24,7 @@ export function Login() {
         <input type="email" autoCapitalize="" placeholder="E-Mail" style={{height:59}} value={input.email} onChange={txt=>setInput({...input,email:txt.target.value})}/>
         <div style={{display:'flex',alignItems:"stretch",alignContent:"stretch"}}>
           <input type={sec?"password":"text"} style={{margin:0,height:59}} placeholder="Senha" value={input.pass} onChange={txt=>setInput({...input,pass:txt.target.value})}/>
-          <button className="outline" style={{width:"min-content",margin:0,height:59}} onClick={()=>setSec(!sec)}>
+          <button className="outline" style={{width:"min-content",margin:0,height:59,display:'flex',justifyContent:'center',alignItems:"center"}} onClick={()=>setSec(!sec)}>
             {sec?<Eye size={32} />:<EyeSlash size={32} />}
           </button>
         </div>

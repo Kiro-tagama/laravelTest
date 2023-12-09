@@ -29,6 +29,16 @@ em seguida execute
   php artisan serve
 ```
 
+use o seed para adicionar dados moka no db
+```
+php artisan db:seed
+```
+
+usuario admin
+  email: admin1234@email.com
+  senha: admin1234
+
+crie outros usuarios sem poder de admin no tela de cadastro do front
 
 ## Front-end
 agora abra outro terminal para acessar o front end 

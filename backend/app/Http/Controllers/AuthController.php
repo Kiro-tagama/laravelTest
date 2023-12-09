@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Client;
 use Laravel\Passport\ClientRepository;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -59,4 +60,8 @@ class AuthController extends Controller
         
         return response(['user' => $request->name], 201);
     }
+
+    // OAuth2
+
+    
 }

@@ -13,6 +13,13 @@ class ReserveController extends Controller
         return response()->json(['reserve'=>$reserve]);
     }
 
+    public function myReserve($id){
+        // Obtenha todas as reservas para o usuário específico
+        $reserve = DB::table('reservations')->where('user_id', $id)->get();
+
+        return response()->json(['reserve' => $reserve]);
+    }
+
     public function store(Request $request){
         $request->validate([
             'user_id' => 'required|uuid',

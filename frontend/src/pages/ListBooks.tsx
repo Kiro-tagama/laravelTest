@@ -10,7 +10,7 @@ export function ListBooks(){
   const {list,query,setQuery,reserveBook,modalBook,setModalBook} =useBooks()  
 
   return(
-    <div>
+    <div className="container">
       <div style={{position:"sticky",top:0,backdropFilter:`blur(20rem)`,padding:10,zIndex:50}}> 
         <h2 style={{marginBottom:0,display:"flex",alignItems:"center"}}>
           <Link to={'/'} role="button" className="outline"><CaretLeft size={32} /></Link>
@@ -31,16 +31,18 @@ export function ListBooks(){
         </div>
       </div>
       <br />
-      {list ?
+      {list && list.length != 0 ?
         <div className="listBooks">
           {list.map((i:propsBooks,index : number)=>
-            <article key={index}>
-              <h3 style={{margin:0}}>{i.title}</h3>
-              <h5>{i.author}</h5>
-              <details>
-                <summary>description</summary>
-                {i.description}
-              </details>
+            <article key={index} style={{display:'flex',flexDirection:"column",justifyContent:'space-between'}}>
+              <div>
+                <h3 style={{margin:0}}>{i.title}</h3>
+                <h5>{i.author}</h5>
+                <details>
+                  <summary>description</summary>
+                  {i.description}
+                </details>
+              </div>
               { admin?
                 <div className="grid" style={{gap:10}}>
                   <button style={{margin:0}} onClick={()=>setModalBook({...i,active:true,funct:"Editar"})}>Editar</button>
@@ -51,7 +53,7 @@ export function ListBooks(){
             </article>
           )}
         </div>
-        : <p>Sem Livros</p>
+        : <p style={{textAlign:"center"}}>Sem Livros</p>
       }
       <ModalEditBook data={modalBook} setData={setModalBook}/>
     </div>

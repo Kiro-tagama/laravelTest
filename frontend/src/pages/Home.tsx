@@ -1,19 +1,21 @@
-import { Books, CalendarCheck, SignOut } from "@phosphor-icons/react"
+import { Books, CalendarCheck, ClipboardText, SignOut } from "@phosphor-icons/react"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { ContextArea } from "../context/Context"
 
 export function Home(){
-  const {user,LogOut}=useContext(ContextArea)
+  const {user,admin,LogOut}=useContext(ContextArea)
 
   let access:any[][] = [
     ['liby',<Books size={32} />,'Biblioteca'],
-    ['reservations',<CalendarCheck size={32} />,'Reservas']
+    ['reservations',<CalendarCheck size={32} />,'Reservas'],
   ]
 
+  admin ? access.push(['adm',<ClipboardText size={32} />,'Administrar']) :null
+
   return(
-    <div>
-      <div style={{display:"flex",alignItems:"center"}}>
+    <div className="container">
+      <div style={{display:"flex",alignItems:"center",flexWrap:"wrap-reverse"}}>
         <h2 style={{flex:1}}>Home</h2>
         <div style={{display:"flex",gap:10}}>
           <span>{user ? <p style={{textAlign:"end"}}>{user.name} <br /> {user.email}</p> : null}</span>

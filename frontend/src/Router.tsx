@@ -5,9 +5,10 @@ import { ContextArea } from "./context/Context";
 import { Home } from "./pages/Home";
 import { ListBooks } from "./pages/ListBooks";
 import { ListReserve } from "./pages/ListReserve";
+import { AdmUsers } from "./pages/AdmUsers";
 
 export function Router() {
-  const {user} = useContext(ContextArea)
+  const {user,admin} = useContext(ContextArea)
 
   
   const pages=(
@@ -15,6 +16,7 @@ export function Router() {
       <Route path="/" element={<Home/>}/>
       <Route path="liby" element={<ListBooks/>}/>
       <Route path="reservations" element={<ListReserve/>}/>
+      {admin ? <Route path="adm" element={<AdmUsers/>}/> : null}
     </>
   )
 

@@ -22,7 +22,10 @@ export function ContextProvider({children}){
 
   useEffect(()=>{
     const data = localStorage.getItem("userData")
+    const dataAdmin = localStorage.getItem("adminData")
+
     data?setUser(JSON.parse(data)):null
+    dataAdmin?setAdmin(JSON.parse(dataAdmin)):null
   },[])
 
   function LoginWithEmail(email:string,pass:string){
@@ -33,6 +36,15 @@ export function ContextProvider({children}){
       
       localStorage.setItem("userData", JSON.stringify(data));
       setUser(data)
+
+      axios.get(baseURL+'permission')
+      .then(res=>{
+        const permissions=res.data.permissions
+        const idExiste = permissions.some((objeto:{id:string}) => objeto.id === data.id);
+        
+        localStorage.setItem("adminData", JSON.stringify(idExiste));
+        idExiste ? setAdmin(true) : setAdmin(false)
+      })
     })
     .catch(_=>{alert("E-mail ou senha incorretos")})
   }

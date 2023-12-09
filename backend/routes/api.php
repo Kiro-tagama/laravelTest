@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReserveController;
+use App\Http\Controllers\PermissionController;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,9 +21,9 @@ use App\Http\Controllers\ReserveController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/auth', function (Request $request) {
+    return $request->user();
+});
 
 
 // - get - lista de livros
@@ -48,16 +51,20 @@ Route::delete('/books/{id}', [BookController::class, 'remove']);        //ok
 
 //Route::get('/books/{reserved}', [BookController::class, 'showReserved']);
 
-// - get - login - OAuth2
+//Passport::routes();
+
+// - get - login 
 Route::get('/alluser', [AuthController::class, 'getAll']);              //ok
 Route::get('/user', [AuthController::class, 'loginWithEmail']);         //ok
 Route::post('/user', [AuthController::class, 'createWithEmail']);       //ok
-Route::get('/user/OA2', [AuthController::class, 'loginWithAuth2']);
-Route::post('/user/OA2', [AuthController::class, 'createWithAuth2']);
+
+Route::get('/permission', [PermissionController::class, 'getAll']);
+Route::post('/permission', [PermissionController::class, 'register']);
 
 // - post - reserva - notification to admin
 // - put - reserva
 // - del - reserva
 Route::get('/reserve', [ReserveController::class, 'getAll']);           //ok
+Route::get('/reserve/{id}', [ReserveController::class, 'myReserve']);           //ok
 Route::post('/reserve', [ReserveController::class, 'store']);
 Route::delete('/reserve/{id}', [ReserveController::class, 'remove']);
